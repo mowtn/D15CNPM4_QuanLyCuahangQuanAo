@@ -1,0 +1,133 @@
+﻿
+.img-aopage {
+    margin-top: -10px;
+}
+
+    .img-aopage img {
+        width: 100%;
+    }
+
+.cart_contentao {
+    width: 80%;
+    height: 15px;
+    margin: 12px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .cart_contentao a {
+        text-decoration: none;
+        color: black;
+    }
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.list-item .witdh19 {
+    width: 19%;
+    margin-bottom: 24px;
+    margin-right: 12.1px;
+}
+
+    .list-item .witdh19 .count {
+        bottom: 100px;
+        right: 7px;
+    }
+
+    .list-item .witdh19 h4 {
+        padding-left: 11px;
+    }
+
+.body .height {
+    height: auto;
+    padding: 25px 0;
+}
+
+.aruge {
+    position: relative;
+    display: inline-block;
+    width: 108px;
+    height: 24px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+    .aruge i {
+        font-size: 15px;
+    }
+
+    .aruge p {
+        display: inline-block;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+#aruge-section {
+    position: absolute;
+    display: none;
+    bottom: -182px;
+    right: -13px;
+    z-index: 2;
+    width: 100%;
+    border: 0.5px solid #ccc;
+    background-color: #fff;
+    box-shadow: rgb(0 0 0 / 22%) 0px 3px 8px;
+}
+
+    #aruge-section a {
+        width: 108px;
+        height: 3%;
+        display: block;
+        font-size: 13px;
+        padding: 7px 11px;
+        opacity: 0.8;
+    }
+
+        #aruge-section a:hover {
+            background-color: #ccc;
+        }
+
+.number-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 42px;
+}
+
+    .number-page a {
+        text-decoration: none;
+        margin: 0 4px;
+        color: black;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 5px 11px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .number-page i {
+        margin: 0 12px;
+        font-size: 16px;
+        opacity: 0.5;
+    }
+
+    .number-page a:hover {
+        color: #0a58ca;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+
+.number-page_icon:hover {
+    color: #0a58ca;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+.list-searchs{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 26px;
+    display: flex;
+}
+

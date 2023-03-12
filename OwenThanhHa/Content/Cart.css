@@ -1,0 +1,172 @@
+﻿
+.cart_content {
+    width: 80%;
+    height: auto;
+    margin: 12px auto;
+}
+
+.margin138 {
+    margin-top: 138px;
+}
+
+.youcan {
+    font-size: 17px;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.cart_content a {
+    text-decoration: none;
+    color: black;
+}
+
+.cart_top {
+    display: inline-block;
+    font-size: 12px;
+}
+
+    .cart_top a + a {
+        margin-left: 8px;
+        text-decoration: underline;
+    }
+
+.cart_mid {
+
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+    .cart_mid i {
+        font-size: 120px;
+    }
+
+    .cart_mid p {
+        font-size: 14px;
+        padding: 5px;
+    }
+    .cart_mid a {
+        font-size: 17px;
+        margin: 18px;
+    }
+
+.count {
+    display: inline-block;
+    position: absolute;
+    right: 17px;
+    bottom: 83px;
+    background-color: white;
+    width: 41px;
+    height: 23px;
+    padding-left: 6px;
+}
+
+.note {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+    .note .note-item {
+        width: 30%;
+        text-align: center;
+        height: 213px;
+        background-color: #f4f4f4;
+        font-weight: 600;
+    }
+
+        .note .note-item i {
+            font-size: 46px;
+            margin: 46px 0 0;
+        }
+
+        .note .note-item h3 {
+            font-size: 17px;
+            margin: 17px 0 8px;
+            opacity: 0.8;
+        }
+
+        .note .note-item p {
+            font-size: 14px;
+            margin: 8px 0;
+            opacity: 0.5;
+        }
+        .flex{
+            display:flex
+        }
+.flex-around{
+    display: flex;
+    justify-content:space-between;
+}
+.inline-block{
+    display: inline-block
+}
+.main-right {
+    width: 30%;
+    margin-top: 51px;
+}
+.main-left{
+    width:70%
+}
+
+.item-cart
+{
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.count-iem {
+    display: flex;
+    width: 45%;
+   
+    margin: 14px 0 16px;
+    height: 29px;
+}
+
+    .count-iem p {
+        font-size: 12px;
+        padding-top: 5px;
+        margin-right: 9px;
+    }
+
+
+    .count-iem button {
+        width: 35px;
+        border-style: none;
+        background-color: white;
+        border: 0.5px solid #000000;
+    }
+        .count-iem button:hover {
+            background-color: #000000;
+            color: white
+        }
+
+    .count-iem input {
+        width: 35px;
+    }
+.mid-item {
+    margin-left: 33px;
+    width: 43%;
+}
+.price-item {
+    /* margin-right: -33px; */
+    width: 40%;
+    padding-left: 29%;
+}
+.dat-hang {
+    border-style: none;
+    display: block;
+    width: 100%;
+    height: 54px;
+    background-color: #000;
+    padding-top: 14px;
+    padding-left: 101px;
+    font-weight: 600;
+    margin-top: 16px;
+}
+    .dat-hang:hover {
+      
+        height: 65px;
+        transition: 0.5s
+    }

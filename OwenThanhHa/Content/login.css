@@ -1,0 +1,54 @@
+﻿body {
+    padding-top: 128px;
+    background-color: #f2f2f2;
+}
+.form-horizontal {
+    width: 58%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 93px;
+    margin-bottom: 77px;
+    padding-top: 12px;
+    padding-bottom: 25px;
+    box-shadow: gray 0px 3px 8px;
+    background-color: white;
+}
+form {
+    padding-top: 1px;
+    padding-bottom: 45px;
+   
+}
+
+.form-horizontal label {
+    font-size: 12px;
+    line-height: 3.5;
+    display: block;
+    margin-left: 45px;
+}
+
+.btn {
+    margin-top: 22px;
+    background-color: black;
+    border: 0.5px solid #fff;
+    color: white;
+}
+
+    .btn:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid #ccc;
+    }
+    .csd{
+        width: 60%;
+    }
+
+
+
+.form-horizontal input {
+    width: 77%;
+    margin-left: 46px;
+    height: 50px;
+    padding-left: 17px;
+}

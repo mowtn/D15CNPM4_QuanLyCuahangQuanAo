@@ -1,0 +1,129 @@
+﻿@model List<OwenThanhHa.Context.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="body">
+    <!-- BODY1 -->
+    <div class="body__img">
+        <div class="sliders">
+            <input type="radio" name="radio_btn" id="radio1">
+            <input type="radio" name="radio_btn" id="radio2">
+            <input type="radio" name="radio_btn" id="radio3">
+
+            <div class="slide first">
+                <img src="../image/img-top.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="../image/dangnhap.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="../image/bia-ao3.jpg" alt="">
+            </div>
+            <div class="click_div">
+                <div class="btn1"></div>
+                <div class="btn2"></div>
+                <div class="btn3"></div>
+
+            </div>
+            <div class="click_img">
+                <label for="radio1"></label>
+                <label for="radio2"></label>
+                <label for="radio3"></label>
+            </div>
+        </div>
+    </div>
+    <!-- BODY2 -->
+    <div class="body__mation">
+        <ul>
+            <li>
+                <a href="#"><i class="fa-brands fa-facebook-messenger"></i></a>
+                <p>Liên hệ với chúng tôi</p>
+            </li>
+            <li>
+                <a href="tel:0985522334"><i class="fa-solid fa-phone"></i></a>
+                <p>Hotline: 0985522334</p>
+            </li>
+            <li>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <p>Truy cập Facebook</p>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-house"></i></a>
+                <p>Home</p>
+            </li>
+        </ul>
+    </div>
+    <!-- BODY3 -->
+    <div class="body__list-item">
+        <h2>DANH MỤC NỔI BẬT</h2>
+        <div style="justify-content:space-between" class="list-item">
+            <div class="item">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 1 })">
+                    <img src="../image/ao.png" alt="">
+                    <p>ÁO</p>
+                    
+                </a>
+            </div>
+            <div class="item">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 2 })">
+                    <img src="../image/quanlisst.jpg" alt="">
+                    <p>QUẦN</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 3 })">
+                    <img src="../image/quan-lot-nam-aristino-ABX069-01x500x500x4.jpg" alt="">
+                    <p>ĐỒ LÓT</p>
+                </a>
+            </div>
+            <div class="item">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 3 })">
+                    <img src="..//image/phukien.jpg" alt="">
+                    <p>PHỤ KIỆN</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- body4 -->
+    <div class="body4">
+        <a href="#"><img src="../image/Frame 744.png" alt=""></a>
+    </div>
+    <!-- body5 -->
+    <div class="body__list-item ">
+        <h2>SẢN PHẨM MỚI</h2>
+        <div class="hiddenlist">
+            <div class="next-piva">
+                <div id="next" onclick="next()"><i class="fa-solid fa-arrow-left"></i></div>
+                <div id="prive"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+            <div style="justify-content:space-between" class="list-item">
+                @foreach (var item in Model.Where(m => m.TypeID == 2).Take(8))
+                {
+                    <div class="body5-item">
+                        <a href="@Url.Action("Product","Product",new { id = item.Id })">
+                            <div class="body5-item__flash">
+                                <img src="~/image/@item.Avartar" />
+                                <h4><i class="fa-solid fa-eye"></i>Xem nhanh</h4>
+                            </div>
+                            <p>@item.Name</p>
+                            <h3>@item.PriceDiscount.000đ</h3>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        
+    </div>
+    <!-- body6 -->
+    <div class="body6">
+        <h2>ĐĂNG KÍ NHẬN BẢNG TIN</h2>
+        <p>Hãy để lại thông tin chúng tôi sẽ liên lạc với bạn!</p>
+        <div class="body6_input">
+            <input type="email" placeholder="Nhập địa chỉ Email (bắt buộc) ">
+            <button>Gửi</button>
+        </div>
+
+    </div>
+</div>

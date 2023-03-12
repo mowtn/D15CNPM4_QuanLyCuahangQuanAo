@@ -1,0 +1,31 @@
+﻿@model OwenThanhHa.Context.User
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/login.css" rel="stylesheet" />
+<div class="row justify-content-md-center form-horizontal">
+    <div class="col-md-4 csd">
+        <div class="card">
+            
+            <div class="card-body">
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+                </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                    </div>
+                    <div class="form-group">
+                        <input style="width:60%; margin-left:85px" type="submit" name="submit" class="btn btn-primary" value="Đăng Nhập" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

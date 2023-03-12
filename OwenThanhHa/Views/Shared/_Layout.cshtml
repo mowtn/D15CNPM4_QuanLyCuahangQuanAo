@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owen Thanh Hà</title>
+    <link rel="icon" href="../image/logo.png" sizes="12x12">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/themify-icons-font/themify-icons/themify-icons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assest/css/fontawesome-free-6.0.0-web/css/all.min.css">
+    <link href="~/Content/fontawesome-free-6.0.0-web/css/all.min.css" rel="stylesheet" />
+    <script src="~/Scripts/main.js"></script>
+
+</head>
+<body>
+    <!-- start header -->
+    <header>
+        <div class="header_top">
+            <div class="HD_topleft">
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src='@Url.Content("~/image/Man-logo-972BF2E89D-seeklogo.com.png")' />
+                </a>
+
+            </div>
+            <div class="HD_topmid">
+                <a href="">TÂT CẢ SẢN PHẨM</a>
+            </div>
+            <div class="HD_topright">
+                @using (Html.BeginForm("searchProduct", "Product", FormMethod.Get))
+                {
+                    <p id="searchstr">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                        <input class="search-pro" type="submit" value="Tìm kiếm" />
+                    </p>
+                }
+                @*
+        <input type="text" class="text-search" placeholder="Tìm kiếm">
+
+                *@
+                <div id="iconsr" class="ti-search" onclick="search()"></div>
+                <span class="hide" onclick="hidede()" style="position: relative;">
+                    <div class="ti-user inline-blockk "></div>
+
+                    @if (Session["id"] != null)
+                    {
+                        <p style="display: inline-block;
+                              width: 10px;
+                              height: 10px;
+                              position: absolute;
+                              left: 26px;
+                              background-color:black;
+                              border-radius:15px;
+                              "></p>
+                    }
+
+
+
+                </span>
+                <a href="@Url.Action("Index","Cart")" style="position: relative;">
+                    <div class="ti-shopping-cart inline-blockk"></div>
+
+                    @if (Session["count"] != null)
+                    {
+                        <div class="count-cart">
+                            <p id="CartCount" style="position: absolute;top: -10px;font-size: 10px;font-weight: bold;left: 4px;">@Session["count"]</p>
+                        </div>
+                    }
+
+
+                </a>
+
+
+                @if (Session["id"] != null)
+                {
+                    <div style="height:56px" id="HD_topright-sign">
+                        <div style="height: 56px" class="sign_top">
+                            @if (Session["isAdmin"].ToString().Equals("False") == false)
+                            {
+                                <p class="pop">xin chào Admin</p>
+                                <a style="color: #fff;" href="~/Admin/Home/Index" class="sign-in">Admin</a>
+                                <a href="@Url.Action("Logout", "Home")" class="sign-in-no">Đăng xuất</a>
+                            }
+                            else
+                            {
+                                <p>xin chào @Session["Fullname"]</p>
+                                <a style="color: #fff;" href="@Url.Action("showYourOrder","Payment",new { id = Session["id"]})" class="sign-in">Đơn hàng</a>
+                                <a href="@Url.Action("Logout","Home")" class="sign-in-no">Đăng xuất</a>
+                            }
+
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div id="HD_topright-sign">
+                        <div class="sign_top">
+                            <a style="color: #fff;" href="@Url.Action("Login","Home")" class="sign-in">Đăng nhập</a>
+                            <a href="@Url.Action("Register","Home")" class="sign-in-no">Đăng kí</a>
+                        </div>
+                        <div class="sign__bottom">
+                            <p>Hoặc đăng nhập bằng</p>
+                            <a href="#"><i style="margin-right: 8px;" class="fa-brands fa-facebook-f"></i>Facebook</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <ul class="header-bottom">
+            <li><a href="#">SẢN PHẨM MỚI</a></li>
+            <li class="hidden">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 1 })">ÁO</a>
+                <ul class="header__nav ">
+                    <li><a href="../pageitem/page.html">Áo Polo</a></li>
+                    <li><a href="../pageitem/page.html">Áo T-Shirt</a></li>
+                    <li><a href="../pageitem/page.html">Áo Tank Top</a></li>
+                    <li><a href="../pageitem/page.html">Áo sơ mi</a></li>
+                    <li><a href="../pageitem/page.html">Áo khoác</a></li>
+                    <li><a href="../pageitem/page.html">Áo khoác</a></li>
+                </ul>
+            </li>
+            <li class="hidden">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 2 })">QUẦN</a>
+                <ul class="header__nav ">
+                    <li><a href="../pagequan/pagequan.html">Quần Âu</a></li>
+                    <li><a href="../pagequan/pagequan.html">Quần Kaki</a></li>
+                    <li><a href="../pagequan/pagequan.html">Quần Jeans</a></li>
+                    <li><a href="../pagequan/pagequan.html">Quần Short</a></li>
+                    <li><a href="../pagequan/pagequan.html">Quần Sport</a></li>
+
+                </ul>
+            </li>
+            <li class="hidden">
+                <a href="@Url.Action("CategoryShow","Category",new { id = 3 })">PHỤ KIỆN</a>
+                <ul class="header__nav ">
+                    <li><a href="../pagephukien/phukien.html">Đồ lót</a></li>
+                    <li><a href="../pagephukien/phukien.html">Thắt lưng</a></li>
+                    <li><a href="../pagephukien/phukien.html">Tất</a></li>
+                    <li><a href="../pagephukien/phukien.html">Ví nam</a></li>
+                    <li><a href="../pagephukien/phukien.html">Cà vạt</a></li>
+                    <li><a href="../pagephukien/phukien.html">Khác</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </header>
+    <!-- end header -->
+    <!-- start body -->
+    <div class="body__mation">
+        <ul>
+            <li>
+                <a href="#"><i class="fa-brands fa-facebook-messenger"></i></a>
+                <p>Liên hệ với chúng tôi</p>
+            </li>
+            <li>
+                <a href="tel:0985522334"><i class="fa-solid fa-phone"></i></a>
+                <p>Hotline: 0985522334</p>
+            </li>
+            <li>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <p>Truy cập Facebook</p>
+            </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-house"></i></a>
+                <p>Home</p>
+            </li>
+        </ul>
+    </div>
+    @RenderBody();
+
+    <!-- end body -->
+    <!-- start footer -->
+    <footer>
+        <div class="footer__top">
+            <div class="footer__top-conti">
+                <div class="footer_1 with20">
+                    <h4>VỀ CHÚNG TÔI</h4>
+                    <ul>
+                        <li><a href="#">Câu chuyện thương hiệ</a>u</li>
+                        <li><a href="#">Tin tức</a></li>
+                        <li><a href="#">Đôi cánh yêu thương</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer_2 with20">
+                    <h4>CHÍNH SÁCH BÁN HÀNG</h4>
+                    <ul>
+                        <li><a href="#">Chính sách đổi hàng</a></li>
+                        <li><a href="#">Chinh sách bảo hành</a></li>
+                        <li><a href="#">Chính sách hội viên</a></li>
+                        <li><a href="#">Chính sách giao nhận</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="footer_3 with20">
+                    <h4>TƯ VẤN</h4>
+                    <ul>
+                        <li><a href="../thanhtoan/thanhtoan.html">Tư vấn thanh toán</a></li>
+
+                        <li><a href="#">Tư vấn chọn size</a></li>
+                        <li><a href="#">Hỏi đáp</a></li>
+                    </ul>
+                </div>
+                <div class="footer_4">
+                    <h4>ƯU ĐÃI 10% KHI ĐĂNG KÍ NHẬN TIN</h4>
+                    <div class="footer_4-input">
+                        <input type="email" placeholder="Nhập Email của bạn...">
+                        <button>ĐĂNG KÝ</button>
+                    </div>
+
+                    <div class="footer_5">
+                        <p>Kết nối với chúng tôi</p>
+
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-solid fa-location-dot"></i></a>
+                        <a href="#"><i class="fa-brands fa-paypal"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__bottom-content">
+                <p>© 2022 Webstartup Vietnam. All Rights Reserved</p>
+                <img src="~/image/Logo-thong-bao-mau-xanh 1.png" />
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
