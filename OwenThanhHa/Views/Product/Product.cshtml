@@ -1,0 +1,188 @@
+﻿@model OwenThanhHa.Models.Product_category
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Product.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="~/Content/themify-icons-font/themify-icons/themify-icons.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $("#addtocart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = @Model.product.Id;
+            // lấy số lượng đặt hàng
+            model.Quantity = $("#ipQuantity").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Thêm giỏ hàng thành công!")
+                    $('#CartCount').text(@Session["count"] + 1);
+                },
+                error: function () {
+                    alert("Lỗi trong khi thêm vào giỏ hàng!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+<div id="body-product">
+    <div class="form-all">
+        <div class="select">
+            <a href="@Url.Action("Index","Home")">Home /</a>
+            <a href="@Url.Action("CategoryShow", "Category",new {id = 1 })">@Model.product.ShortDes/</a>
+            <a href="">@Model.product.HderProduct</a>
+        </div>
+        <div class="product-main">
+            <div class="main-listImg">
+                <div class="imgItem"></div>
+                <div class="imgItem"></div>
+                <div class="imgItem"></div>
+                <div class="imgItem"></div>
+            </div>
+            <div class="main-listImgMain">
+                <div class="circle">
+                    <button href=""><</button>
+                    <button href="">></button>
+                </div>
+                <img style="margin-left: 170px" src="~/image/@Model.product.Avartar" />
+
+            </div>
+
+            <div class="main-atr">
+                <h1>@Model.product.Name</h1>
+                <p>@Model.product.PriceDiscount.000đ</p>
+                <div style="    line-height: 2.5;
+ font-size: 13px; margin-top: 24px;">
+                    Chọn size<span style="opacity: 0.7;">(Hướng dẫn chọn size)</span>
+                    <ul>
+                        @if (Model.product.CategoryId == 1)
+                        {
+                            <li>S</li>
+                            <li>M</li>
+                            <li>L</li>
+                            <li>XL</li>
+                            <li>XXL</li>
+
+                        }
+                        else if (Model.product.CategoryId == 2)
+                        {
+                            <li class="box-1" onclick="selectsize(1)">29</li>
+                            <li class="box-2" onclick="selectsize(2)">30</li>
+                            <li class="box-3" onclick="selectsize(3)">31</li>
+                            <li class="box-4" onclick="selectsize(4)">32</li>
+                            <li class="box-5" onclick="selectsize(5)">33</li>
+                            <li class="box-6" onclick="selectsize(6)">34</li>
+                        }
+                        else
+                        {
+
+                        }
+
+
+                    </ul>
+                </div>
+                <div>
+                    <h2 style="font-size: 14px; margin-top: 12px;">Chọn màu sắc phù hợp</h2>
+                </div>
+
+                @if (Model.product.CategoryId == 1)
+                {
+                    <ul style="margin-top: 25px;width:150px;">
+                        <li><div style="display:inline-block; background-color:black; height:30px;width:30px;border:0.5px solid #000000"></div></li>
+                        <li><div style="display:inline-block; background-color:red; height:30px;width:30px; border:0.5px solid #000000 "></div></li>
+                        <li><div style="display:inline-block; background-color:white; height:30px;width:30px;border:0.5px solid #000000"></div></li>
+                        <li><div style="display:inline-block; background-color:green; height:30px;width:30px;border:0.5px solid #000000"></div></li>
+                    </ul>
+                }
+                else if (Model.product.CategoryId == 2)
+                {
+                    <ul style="margin-top: 25px;width:100px;">
+                        <li><div style="display:inline-block; background-color:black; height:30px;width:30px;border:0.5px solid #000000"></div></li>
+                        <li><div style="display:inline-block; background-color:red; height:30px;width:30px; border:0.5px solid #000000 "></div></li>
+                        <li><div style="display:inline-block; background-color:white; height:30px;width:30px;border:0.5px solid #000000"></div></li>
+                    </ul>
+                }else
+                 {
+
+                }
+                    <div class="count-iem">
+                        <p>Số Lượng</p>
+                        <input id="ipQuantity" style="padding-left: 10px" type="text" value="1" />
+                    </div>
+                    <div class="subCart">
+                        <a id="addtocart" class="addCart" href="#">
+                            <div class="ti-shopping-cart inline-blockk"></div>
+                            Thêm vào giỏ hàng
+                        </a>
+                        <a class="BuyNow">
+                            Mua ngay
+                        </a>
+                    </div>
+                    <div class="more">
+                        <div class="more-cus" onclick="showMoreTlustt()">
+                            <img src="~/Content/icon/trus.svg" />
+                            <span>Miễn phí vận chuyển cho đơn hàng từ 500.000VNĐ</span>
+                        </div>
+                        <div class="more-cus" onclick="showMoreTlustt()">
+                            <img src="~/Content/icon/Pay-Delivery.svg" />
+                            <span>Đa dạng phương thức thanh toán</span>
+                        </div>
+                        <div class="more-cus" onclick="showMoreTlustt()">
+                            <img src="~/Content/icon/tranfer.svg" />
+                            <span>Đổi hàng miễn phí lên đến 30 ngày</span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="product-info">
+            <h1>Thông tin sản phẩm</h1>
+            <br />
+            @Model.product.FullDes
+            @*
+                    <h2>Kiểu Dáng: </h2>
+                <p> WELL MANNER</p>
+                <h2>Chi tiết: </h2>
+
+                <p> - Áo  sơ mi Aristino Boss dài tay với phom dáng Well manner suông nhẹ, che khuyết điểm tốt nhưng vẫn thoải mái tối đa khi cử động.</p>
+                <h2>Chất liệu: </h2>
+                <p> - Chất liệu 100% Cotton tự nhiên giúp áo mềm mại, xốp nhẹ, khả năng thấm hút tốt, thoáng khí dù ở mùa nào trong năm, đồng thời vẫn giữ được độ đứng dáng vừa đủ.</p>
+
+                <p>- Thiết kế ấn tượng với tà lượn, có túi, chữ kí Aristino Boss trên tay áo cùng họa tiết kẻ sọc xanh trên thân áo, mang tới diện mạo thời thượng, lịch lãm và sang trọng.</p>
+                <h2>Màu sắc: </h2>
+                <p> Trắng kẻ xanh dệt jacquard</p>
+                <h2>SIZE: </h2>
+                <p>S,M,L,XL,XXL</p>
+            *@
+        </div>
+        <h1>Danh sách sản phẩm</h1>
+        
+        <div class="product-list">
+            @foreach (var item in Model.Listproducts.Take(4))
+            {
+
+
+                <div class="body5-item">
+                    <a href="@Url.Action("Product","Product",new { id = item.Id})">
+                        <div class="body5-item__flash">
+                            <img src="~/image/@item.Avartar" alt="">
+                            <h4><i class="fa-solid fa-eye"></i>Xem nhanh</h4>
+                        </div>
+                        <p>@item.Name</p>
+                        <h3>@item.PriceDiscount.000đ</h3><del>@item.Price.000đ</del>
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+

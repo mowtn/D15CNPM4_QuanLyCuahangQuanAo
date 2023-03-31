@@ -1,0 +1,74 @@
+﻿@model IEnumerable<OwenThanhHa.Context.Product>
+@{
+    ViewBag.Title = "searchProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Category.css" rel="stylesheet" />
+<p></p>
+
+<div class="body margin138" style="margin-top: 166px;">
+    @if (Model.Count() > 0)
+    {
+        <div class="cart_contentao">
+
+            <div class="aruge" onclick="pagehide()">
+                <p>Sắp xếp theo</p>
+                <i class="fa-solid fa-arrow-down-short-wide"></i>
+                <div id="aruge-section">
+                    <a href="#">Sắp xếp theo</a>
+                    <a href="#">Mới nhất</a>
+                    <a href="#">Giá rẻ nhất</a>
+                    <a href="#">Giá cao nhất</a>
+                    <a href="#">Bán chạy</a>
+                    <a href="#">Xem nhiều</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- body5 -->
+        <!-- polo -->
+        <div id="polo" class="height body__list-item ">
+            <div class="list-item wrap">
+                @foreach (var item in Model)
+                {
+                    <div class="witdh19 body5-item">
+                        <a href="@Url.Action("Product","Product",new { id = @item.Id })">
+                            <div class="body5-item__flash">
+                                <img src="~/image/@item.Avartar" />
+                                <h4><i class="fa-solid fa-eye"></i>Xem nhanh</h4>
+                            </div>
+                            <p>@item.Name</p>
+                            <h3>@item.PriceDiscount.000đ</h3><del>@item.Price.000đ</del>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+            <!-- end polo -->
+            <!-- somi -->
+            <!-- end somi -->
+            }
+            else
+            {
+            <div style="display: flex;
+            flex-direction: column;
+            align-items: center;">
+                <p style="font-size: 34px;
+                margin-top: 120px;">Không có sản phẩm phù hợp !</p>
+                <a style="  text-decoration: none;
+                        color: blue;
+                        margin-top: 15px;
+                        margin-bottom: 120px;"
+                   href="@Url.Action("Index","Home")">Quay trở lại trang chủ</a>
+            </div>
+
+            }
+        </div>
+
+
+
+
+
+
+

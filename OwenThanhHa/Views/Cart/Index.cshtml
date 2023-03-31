@@ -1,0 +1,153 @@
+﻿@model IEnumerable<OwenThanhHa.Models.CartModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Total = 0;
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="~/Scripts/cart.js"></script>
+<link href="~/Content/Cart.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(function () {
+        $("#removecart").click(function () {
+            var model = {};
+            //lấy id sản phẩm
+            model.Id = $("#productid").val();
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Remove", "Cart")',
+                data:  JSON.stringify(model) ,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    $('#CartCount').text(@Session["count"] - 1);
+                    $("#item-" + model.Id).remove();
+                },
+                error: function () {
+                    alert("Lỗi trong khi xóa sản phẩm!");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div class="body margin138">
+    <div class="cart_content">
+
+        <div class="cart_top">
+            <a href="../index/index.html">Home /</a>
+            <a href="./cart.html">Giỏ hàng</a>
+        </div>
+        <div class="cart_mid flex-around">
+            @*
+                 <i class="fa-solid fa-cart-arrow-down"></i>
+                <p>Giỏ hàng bạn chưa có sản phẩm.</p>
+                <a href="../index/index.html">Chọn sản phẩm ngay</a>
+            *@
+
+
+            @if (Model == null || ((int)Session["count"]) == 0)
+            {
+                <div style="text-align: center;margin-left: 500px;margin-top: 100px;margin-bottom: 100px;" class="list-itemC">
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                    <p>Giỏ hàng bạn chưa có sản phẩm.</p>
+                    <a href="@Url.Action("Index","Home")">Chọn sản phẩm ngay</a>
+                </div>
+            }
+            else
+            {
+                <div class="main-left inline-block">
+                    <div class="list-itemC">
+                        <div class="cart-main flex-around">
+                            <h1 style="    font-size: 19px;">Giỏ Hàng của bạn(@Session["count"])</h1>
+                            <a href="">Chọn Thêm sản phẩm</a>
+
+                        </div>
+                       
+                    
+                        
+                        @foreach (var item in Model)
+                        {
+                           
+                            <div id="item-@item.product.Id" class="item-cart flex">
+                                <div class="img-cart">
+                                    <img style="width: 100%; height: 100%;" src="~/image/@item.product.Avartar" />
+                                </div>
+                                @{ 
+                                    Total += (@item.Quantity * (Int32)@item.product.PriceDiscount);
+                                }
+                                <div class="mid-item">
+                                    <h2 style="font-size: 16px;">@item.product.Name</h2>
+                                    <p style="opacity:0.8">Size: L</p>
+                                    <div class="count-iem">         
+                                        <input id="quantity" style="padding-left: 10px" type="text" value="@item.Quantity" />
+                                    </div>
+                                    <input type="hidden" value="@item.product.Id" id="productid" />
+                                    <span id="removecart" style="opacity:0.8">xóa</span>
+                                </div>
+                                <div id="price" class="price-item">@item.product.PriceDiscount.000đ</div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="main-right inline-block">
+                    <div class=" flex-around">
+                        <h2 style="font-size:16px">Tạm tính</h2>
+                        <p style="font-size:14px; opacity:0.8">@Total.000đ</p>
+                    </div>
+                    <div>
+                        <h2 style="font-size: 14px; margin-top: 12px; opacity: 0.6;">Miễn phí vận chuyển cho đơn hàng từ 500k</h2>
+                    </div>
+                    <a class="dat-hang" href="@Url.Action("Index","Payment")" style=" color: white;">Tiến hành đặt hàng</a>
+
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- body5 -->
+    @*
+              <div class="body__list-item ">
+            <h2 class="youcan">Có thể bạn sẽ thích</h2>
+            <div class="list-item">
+                @foreach (var item in Model)
+                {
+                    <div class="body5-item">
+                        <a href="#">
+                            <div class="body5-item__flash">
+                                <img src="~/image/@item.product.Avartar" alt="">
+                                <h4><i class="fa-solid fa-eye"></i>Xem nhanh</h4>
+                            </div>
+
+                            <p>@item.product.Name</p>
+                            <h3>@item.product.PriceDiscount.000đ</h3><del>@item.product.Price.000đ</del>
+                        </a>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    *@
+
+    <div class="note">
+        <div class="note-item">
+            <i class="fa-solid fa-truck"></i>
+            <h3>MIỄN PHÍ VẬN CHUYỂN</h3>
+            <p>Miễn phí vận chuyển cho đơn hàng từ 500k</p>
+        </div>
+        <div class="note-item">
+            <i class="fa-solid fa-right-left"></i>
+            <h3>ĐỔI TRẢ DỄ DÀNG</h3>
+            <p>Đổi trả sản phẩm trong vòng 30 ngày</p>
+        </div>
+        <div class="note-item">
+            <i class="fa-solid fa-credit-card"></i>
+            <h3>THANH TOÁN COD TIỆN LỢI</h3>
+            <p>Nhận hàng, kiểm tra, rồi mới thanh toán</p>
+        </div>
+    </div>
+</div>
+
