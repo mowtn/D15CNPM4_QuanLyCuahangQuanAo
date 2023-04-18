@@ -1,0 +1,76 @@
+﻿@model OwenThanhHa.Models.Order_ProductOfUser
+@{
+    ViewBag.Title = "showYourOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/showorder.css" rel="stylesheet" />
+<div class="main-oder">
+    <h1 style="font-size:24px">Thông tin đơn hàng</h1>
+    @foreach(var item1 in Model.Listorder)
+    {
+    <div class="itemOrder">
+        <div id="topOder">
+            <h2 style="font-size:16px">Tên đơn hàng: @item1.Name</h2>
+            <h2 style="font-size:16px">Ngày tạo đơn: @item1.CreatedOnUTc</h2>
+            <div class="soooo">
+                <p style="padding: 5px">Trạng thái</p>
+                @if (item1.Status == 2)
+                {
+                    <a style="background-color: greenyellow" href="#">Đã thanh toán</a>
+                }
+                else
+                {
+                    <a style="background-color: orangered; width: 66%;" href="@Url.Action("changeStatus","Payment",new { id = item1.Id })">Tiến hành thanh toán</a>
+                }
+
+            </div>
+        </div>
+        <div id="bottomOder">
+            <table id="table-@item1.Id" style="margin-top: 15px" class="table">
+                <tr>
+                    <th>
+                        Hình ảnh
+                    </th>
+                    <th>
+                        Tên sản phẩm
+                    </th>
+                    <th>
+                        Giá tiền
+                    </th>
+                    <th>
+                        Số lượng
+                    </th>
+                    <th></th>
+                </tr>
+               
+
+                @foreach (var item in Model.Listorderproduct.Where(m=>m.OrderId == item1.Id))
+                {
+                    <tr id="stupid">
+                        @foreach (var itom in Model.Listproducts.Where(m => m.Id == item.ProductId))
+                        {
+                            <td style="width:24%">
+                                <img style="width:23%" src="~/image/@itom.Avartar" />
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => itom.Name)
+                            </td>
+                            <td id="pricett">
+                                @Html.DisplayFor(modelItem => itom.PriceDiscount).000đ
+                            </td>
+                        }
+                        <td id="quantityy">
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+
+                    </tr>
+                    
+                }
+            </table>
+        </div>
+        <div id="showTable" onclick="showTb(@item1.Id)"><i class="fa-solid fa-table"></i></div>
+    </div>
+    }
+    
+</div>
+

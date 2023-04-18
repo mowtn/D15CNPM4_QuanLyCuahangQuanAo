@@ -1,0 +1,110 @@
+﻿    @model List<OwenThanhHa.Context.Product>
+
+    @{
+        ViewBag.Title = "";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <link href="~/Content/Category.css" rel="stylesheet" />
+    <div class="body margin138">
+        <div class="img-aopage">
+            <img src="../image/bia-ao3.jpg" alt="">
+        </div>
+        <div class="cart_contentao">
+
+            <div class="cart_top">
+                <a href="@Url.Action("Index","Home")">Home</a>
+                <a href="@Url.Action("CategoryShow", "Category",new {id = 1 })">...</a>
+            </div>
+            <div class="aruge" onclick="pagehide()">
+                <p>Sắp xếp theo</p>
+                <i class="fa-solid fa-arrow-down-short-wide"></i>
+                <div id="aruge-section">
+                    <a href="#">Sắp xếp theo</a>
+                    <a href="#">Mới nhất</a>
+                    <a href="#">Giá rẻ nhất</a>
+                    <a href="#">Giá cao nhất</a>
+                    <a href="#">Bán chạy</a>
+                    <a href="#">Xem nhiều</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- body5 -->
+        <!-- polo -->
+        <div id="polo" class="height body__list-item ">
+            @foreach (var item in Model.Where(m => m.TypeProduct == 1).Take(1))
+            {
+                <h2 class="youcan">@item.HderProduct</h2>
+            }
+
+            <div class="list-item wrap">
+                @foreach (var item in Model.Where(m => m.TypeProduct == 1))
+                {
+
+                    <!-- polo -->
+                    <div class="witdh19 body5-item">
+                        <a href="@Url.Action("Product","Product",new { id = @item.Id })">
+                            <div class="body5-item__flash">
+                                <img src="~/image/@item.Avartar" />
+                                <h4><i class="fa-solid fa-eye"></i>Xem nhanh</h4>
+                            </div>
+
+                            <p>@item.Name</p>
+                            <h3>@item.PriceDiscount.000đ</h3><del>@item.Price.000đ</del>
+                        </a>
+                    </div>
+
+                    <!-- end polo -->
+
+                }
+            </div>
+        </div>
+        <!-- end polo -->
+        <!-- somi -->
+        <div class="height body__list-item " id="somi">
+            @foreach (var item in Model.Where(m => m.TypeProduct == 2).Take(1))
+            {
+                <h2 class="youcan">@item.HderProduct</h2>
+                {
+                    @*if (item.BranId == 2)
+                    {
+                        ViewBag.title = "heelo";
+                    }*@
+                }
+            }
+            @ViewBag.title
+            <div class="list-item wrap">
+                <!-- polo -->
+                @foreach (var item in Model.Where(m => m.TypeProduct == 2))
+                {
+                    <div class="witdh19 body5-item">
+                        <a href="@Url.Action("Product","Product",new {id = @item.Id })">
+                            <div class="body5-item__flash">
+                                <img src="~/image/@item.Avartar" />
+                                <h4><i class="fa-solid fa-eye"></i>Xem nhanh</h4>
+                            </div>
+
+                            <p>@item.Name</p>
+                            <h3>@item.PriceDiscount.000đ</h3><del>@item.Price.000đ</del>
+                        </a>
+                    </div>
+                }
+
+                <!-- end polo -->
+            </div>
+        </div>
+        <!-- end somi -->
+        <div class="number-page">
+            <div class="number-page_icon">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <a style="background-color: black; color: #fff;" href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <div class="number-page_icon">
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+        </div>
+
